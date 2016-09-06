@@ -61,7 +61,7 @@ listen {{$root.Key}}_{{$port}}
     mode tcp
     bind *:{{$port}}
     {{range $taskIndex, $taskJson := $tasks}}{{with $task := parseJSON $taskJson.Value}}
-    {{if ne $task.taskStatus "TASK_RUNNING"}}# {{end}}server {{$task.id}} {{$task.host}}:{{index $task.ports $index}} # {{$task.taskStatus}}
+    server {{$task.id}} {{$task.host}}:{{index $task.ports $index}} # {{$task.taskStatus}}
     {{else}}{{end}}{{else}}
     # no tasks for {{$root.Key}}_{{$port}}{{end}}
 {{else}}{{/* else for with $tasks */}}
